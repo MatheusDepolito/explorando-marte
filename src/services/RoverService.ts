@@ -1,5 +1,5 @@
-import { Plateau } from "../models/Plateau";
-import { Rover } from "../models/Rover";
+import { Plateau } from '../models/Plateau';
+import { Rover } from '../models/Rover';
 
 export class RoverService {
   private plateau: Plateau;
@@ -11,7 +11,7 @@ export class RoverService {
   processRovers(roverInputs: string[]): string[] {
     const results: string[] = [];
 
-    for(let i = 0; i < roverInputs.length; i += 2) {
+    for (let i = 0; i < roverInputs.length; i += 2) {
       const [x, y, direction] = roverInputs[i].split(' ');
       const instructions = roverInputs[i + 1];
 
@@ -19,7 +19,7 @@ export class RoverService {
 
       this.plateau.addRover(rover);
 
-      for(const instruction of instructions) {
+      for (const instruction of instructions) {
         try {
           switch (instruction) {
             case 'L':
@@ -32,7 +32,7 @@ export class RoverService {
               rover.move();
               break;
             default:
-              throw new Error(`Invalid instruction: ${instruction}`)
+              throw new Error(`Invalid instruction: ${instruction}`);
           }
         } catch (error) {
           throw error;
