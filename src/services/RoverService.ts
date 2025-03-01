@@ -1,5 +1,6 @@
 import { Plateau } from '../models/Plateau';
 import { Rover } from '../models/Rover';
+import fs from 'fs';
 
 export class RoverService {
   private plateau: Plateau;
@@ -42,5 +43,38 @@ export class RoverService {
     }
 
     return results;
+  }
+
+  processRoversFromFile(filePath: string): string[] {
+    try {
+      const fileContent = fs.readFileSync(filePath, 'utf-8');
+
+      const lines = fileContent
+        .split('\n')
+        .map((line) => line.trim())
+        .filter((line) => line.length > 0);
+
+      if (lines.length < 1) {
+        throw new Error(
+          'O arquivo deve conter pelo menos uma linha com o tamanho do planalto.',
+        );
+      }
+
+      const [maxX, maxY] = lines[0].split(' ').map(Number);
+
+      if (isNaN(maxX) || isNaN(maxY)) {
+        throw new Error(
+          'O tamanho do planalto deve ser composto por dois números.',
+        );
+      }
+
+      const roverService = new RoverService(maxX, maxY);
+
+      const roverInputs = lines.slice(1);
+
+      return roverService.processRovers(roverInputs);
+    } catch (error: any) {
+      throw new Error(`Erro ao processar o arquivo: ${error.message}`);
+    }
   }
 }

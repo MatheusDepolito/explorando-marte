@@ -1,12 +1,12 @@
 import { RoverService } from './services/RoverService';
 
-const input = ['5 5', '1 2 N', 'LMLMLMLMM', '3 3 E', 'MMRMMRMRRM'];
+const filePath = './input.txt';
 
-const [ plateauSize, ...roverInputs ] = input;
-const [maxX, maxY] = plateauSize.split(' ').map(Number);
+const roverService = new RoverService(0, 0);
 
-const roverService = new RoverService(maxX, maxY);
-
-const results = roverService.processRovers(roverInputs);
-
-console.log(results);
+try {
+  const results = roverService.processRoversFromFile(filePath);
+  console.log(results);
+} catch (error: any) {
+  console.error(error.message);
+}
