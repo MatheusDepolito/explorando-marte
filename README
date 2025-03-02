@@ -1,0 +1,118 @@
+🚀 Explorando Marte - NASA Rovers
+Este projeto simula o controle de sondas (rovers) enviadas pela NASA para explorar Marte. As sondas são enviadas para um planalto retangular e recebem instruções para se movimentar e capturar imagens. O objetivo é processar as instruções e determinar a posição final de cada sonda.
+
+📋 Descrição do Problema
+A NASA enviou um conjunto de sondas para explorar Marte. Essas sondas pousam em um planalto retangular e recebem instruções de controle para se movimentar e capturar imagens. As instruções incluem:
+
+L: Virar 90 graus à esquerda.
+
+R: Virar 90 graus à direita.
+
+M: Mover um ponto na direção atual.
+
+O planalto é definido por coordenadas (x, y), e as sondas devem respeitar os limites do planalto. Além disso, não é permitido que duas sondas ocupem a mesma posição simultaneamente.
+
+🛠️ Como Configurar e Rodar o Projeto
+Pré-requisitos
+Node.js (versão 16 ou superior)
+
+Yarn (ou npm)
+
+Passos para Execução
+Clone o repositório:
+
+git clone https://github.com/MatheusDepolito/explorando-marte.git
+cd explorando-marte
+
+yarn install
+
+Para processar entradas manualmente via arquivo de texto utilizar:
+
+yarn build
+
+yarn start
+
+e para testes utilizar:
+
+yarn test
+
+🧠 Decisões de Projeto
+Estrutura do Projeto
+Models:
+
+Plateau: Representa o planalto com limites (x, y) e gerencia as posições ocupadas.
+
+Rover: Representa uma sonda com posição (x, y) e direção (N, S, E, W).
+
+Services:
+
+RoverService: Processa as instruções das sondas e gerencia a lógica de movimentação.
+
+Tests:
+
+Testes unitários para cada classe e método, garantindo a cobertura de cenários principais e possíveis falhas.
+
+Design Pattern Adotado
+Command Pattern:
+
+Cada instrução (L, R, M) é tratada como um comando.
+
+O método processRovers atua como um invoker, que executa os comandos em cada sonda.
+
+Benefícios: Separação de responsabilidades, extensibilidade e facilidade de testes.
+
+🔧 Pipeline de CI
+O pipeline de CI foi configurado usando GitHub Actions. Ele executa os seguintes passos:
+
+Checkout do código:
+
+Faz o checkout do repositório.
+
+Configuração do Node.js:
+
+Configura o ambiente com Node.js (versão 20).
+
+Instalação de dependências:
+
+Instala as dependências usando yarn install --frozen-lockfile.
+
+Execução dos testes:
+
+Executa os testes com yarn test.
+
+Compilação do projeto:
+
+Compila o projeto TypeScript com yarn build.
+
+Como Acompanhar os Resultados
+Acesse a aba Actions no GitHub.
+
+Verifique o status da execução do pipeline.
+
+Clique na execução para ver os logs detalhados.
+
+🐛 Debugging no VSCode
+Para depurar o projeto no VSCode, siga os passos abaixo:
+
+Defina Breakpoints:
+
+Abra o arquivo que deseja depurar e clique na margem esquerda para definir breakpoints.
+
+Execute o Debugger:
+
+Pressione F5 ou clique em "Run and Debug" no painel lateral do VSCode.
+
+🚀 Destaques
+Testes Unitários:
+
+Cobertura de testes para todos os métodos e cenários principais.
+
+Testes de movimentação, colisão e validação de limites.
+
+Extensibilidade:
+
+O uso do Command Pattern facilita a adição de novas instruções no futuro.
+
+Pipeline de CI:
+
+Integração contínua com GitHub Actions para garantir a qualidade do código.
